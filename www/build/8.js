@@ -1,14 +1,14 @@
 webpackJsonp([8],{
 
-/***/ 420:
+/***/ 469:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IndividualChatPageModule", function() { return IndividualChatPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__individual_chat__ = __webpack_require__(432);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(159);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__individual_chat__ = __webpack_require__(479);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -29,7 +29,7 @@ IndividualChatPageModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_2__individual_chat__["a" /* IndividualChatPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__individual_chat__["a" /* IndividualChatPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__individual_chat__["a" /* IndividualChatPage */]),
         ],
     })
 ], IndividualChatPageModule);
@@ -38,14 +38,14 @@ IndividualChatPageModule = __decorate([
 
 /***/ }),
 
-/***/ 432:
+/***/ 479:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IndividualChatPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_chat_chat__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_chat_chat__ = __webpack_require__(301);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(159);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,12 +63,21 @@ var IndividualChatPage = (function () {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.chatProvider = chatProvider;
-        this.receiverName = navParams.get('receiverName');
-        this.receiverStatus = navParams.get('receiverStatus');
-        this.chatRoom = navParams.get('chatRoom');
+        this.lastChatKey = '';
+        this.counter = 0;
+        this.recieverId = navParams.get('key');
+        this.receiverName = navParams.get('displayName');
+        this.receiverStatus = navParams.get('status');
         this.tabBarElement = document.querySelector(".tabbar.show-tabbar");
+        this.removeUnreadMsg();
+        this.chats = '';
         this.loadChats();
+        this.counter++;
+        console.log('counter', this.counter);
     }
+    IndividualChatPage.prototype.scrollToBottom = function () {
+        this.content.nativeElement.scrollIntoView(false);
+    };
     IndividualChatPage.prototype.ionViewWillEnter = function () {
         this.tabBarElement.style.display = "none";
     };
@@ -76,25 +85,47 @@ var IndividualChatPage = (function () {
         this.tabBarElement.style.display = "flex";
     };
     IndividualChatPage.prototype.sendMessage = function () {
-        this.chatProvider.sendMessage(this.chatRoom, this.chatMsg);
+        var _this = this;
+        this.chatProvider.sendMessage(this.chatMsg, this.recieverId);
         this.chatMsg = "";
+        this.removeUnreadMsg();
+        setTimeout(function () {
+            _this.scrollToBottom();
+        }, 200);
     };
     IndividualChatPage.prototype.loadChats = function () {
         var _this = this;
-        this.chatProvider.loadChats(this.chatRoom).subscribe(function (chats) {
+        this.chatProvider.loadChats().then(function (chats) {
+            console.log('chats', chats);
             _this.chats = chats;
+            setTimeout(function () {
+                _this.scrollToBottom();
+            }, 400);
         });
-        //this.chats =
+    };
+    IndividualChatPage.prototype.removeUnreadMsg = function () {
+        this.chatProvider.getRemoveUnreadMsg();
+    };
+    IndividualChatPage.prototype.doInfinite = function (infiniteScroll) {
+        var _this = this;
+        this.chatProvider.scrollChats().then(function (chats) {
+            _this.chats = chats;
+            infiniteScroll.complete();
+        });
     };
     return IndividualChatPage;
 }());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["_13" /* ViewChild */])('content'),
+    __metadata("design:type", Object)
+], IndividualChatPage.prototype, "content", void 0);
 IndividualChatPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["f" /* IonicPage */])(),
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["n" /* Component */])({
-        selector: 'page-individual-chat',template:/*ion-inline-start:"C:\Users\ph2150108\Desktop\angular4\FireChat\src\pages\individual-chat\individual-chat.html"*/'<!-- <ion-header>\n\n  <ion-navbar color="light-blue">\n\n    <ion-title>{{receiverName}} <p><span [class]="receiverStatus"></span>{{receiverStatus}}</p></ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content no-padding no-margin>\n\n    <ion-list>\n\n        <ion-item *ngFor="#message of messages">{{message}}</ion-item>\n\n        <ion-item>Test message</ion-item>\n\n    </ion-list>\n\n</ion-content>\n\n\n\n<ion-footer position="bottom">\n\n    <ion-item>\n\n      <ion-icon item-left name="attach" color="light-blue"></ion-icon>\n\n      <ion-input type="text" placeholder="Mobile no"></ion-input>\n\n      <ion-icon item-right name="send" (click)="pickContactNo()" color="light-blue"></ion-icon>\n\n    </ion-item>\n\n</ion-footer>\n\n\n\n\n\n -->\n\n\n\n <ion-header>\n\n    <ion-navbar color="light-blue">\n\n        <ion-title>{{receiverName}} <p><span [class]="receiverStatus"></span>{{receiverStatus}}</p></ion-title>\n\n      </ion-navbar>\n\n </ion-header>\n\n <ion-content>\n\n   <div class="directChatArea">\n\n      <div class="directChatMsg" *ngFor="let chat of chats">\n\n          <div class="directChatInfo">\n\n            <span class="directChatName" float-left>{{chat.name}}</span>\n\n            <span class="directChatTimestamp" float-right>{{chat.timestamp}}</span>\n\n          </div>\n\n          <img class="directChatImg" src="{{chat.senderPhoto}}" *ngIf="chat.senderPhoto != \'none\';else photo;">\n\n          <ng-template #photo><span class="iconCircle">A</span></ng-template>\n\n          <div class="talk-bubble tri-right tri-right left-top">\n\n            <div class="talktext">\n\n              <p>{{chat.message}}</p>\n\n            </div>\n\n          </div>\n\n      </div>\n\n   </div>\n\n </ion-content>\n\n <ion-footer position="bottom">\n\n    <ion-item>\n\n        <ion-icon item-left name="attach" color="light-blue"></ion-icon>\n\n        <ion-input type="text" [(ngModel)]="chatMsg" name="chatMsg" (keyup.enter)="sendMessage()" placeholder="Enter your message . . ."></ion-input>\n\n        <ion-icon item-right name="send" color="light-blue" (click)="sendMessage()"></ion-icon>\n\n    </ion-item>\n\n </ion-footer>'/*ion-inline-end:"C:\Users\ph2150108\Desktop\angular4\FireChat\src\pages\individual-chat\individual-chat.html"*/,
+        selector: 'page-individual-chat',template:/*ion-inline-start:"C:\Users\Sanchez\Desktop\ng4_ionic3\FireChat\src\pages\individual-chat\individual-chat.html"*/'<ion-header>\n\n    <ion-navbar color="light-blue">\n\n        <ion-title>{{receiverName}} <p>{{receiverStatus}}</p></ion-title>\n\n      </ion-navbar>\n\n </ion-header>\n\n <ion-content>\n\n  <ion-infinite-scroll position="top" (ionInfinite)="doInfinite($event)">\n\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n\n  </ion-infinite-scroll>\n\n\n\n   <div class="directChatArea" #content>\n\n      <div class="directChatMsg" *ngFor="let chat of chats">\n\n          <div class="directChatInfo">\n\n            <span class="directChatTimestamp">{{chat.timestamp | date:\'shortTime\'}}</span>\n\n          </div>\n\n          <img class="directChatImg" src="{{chat.senderPhoto}}" *ngIf="chat.senderPhoto != \'none\';else photo;" [hidden]="chat.name != receiverName">\n\n          <ng-template #photo><span class="iconCircle"  [hidden]="chat.name != receiverName">{{chat.name.charAt(0)}}</span></ng-template>\n\n          <div class="talk-bubble tri-right tri-right left-top" [attr.float-right]="chat.name != receiverName ? true : null">\n\n            <div class="talktext">\n\n              <p>{{chat.message}}</p>\n\n            </div>\n\n          </div>\n\n      </div>\n\n   </div>\n\n </ion-content>\n\n <ion-footer position="bottom">\n\n    <ion-item>\n\n        <ion-icon item-left name="attach" color="light-blue"></ion-icon>\n\n        <ion-input type="text" [(ngModel)]="chatMsg" name="chatMsg" (keyup.enter)="sendMessage()" placeholder="Enter your message . . ."></ion-input>\n\n        <ion-icon item-right name="send" color="light-blue" (click)="sendMessage()"></ion-icon>\n\n    </ion-item>\n\n </ion-footer>'/*ion-inline-end:"C:\Users\Sanchez\Desktop\ng4_ionic3\FireChat\src\pages\individual-chat\individual-chat.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */],
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["i" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* NavParams */],
         __WEBPACK_IMPORTED_MODULE_0__providers_chat_chat__["a" /* ChatProvider */]])
 ], IndividualChatPage);
 

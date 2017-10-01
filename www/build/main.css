@@ -27493,6 +27493,11 @@ ion-navbar.toolbar {
   }
 }
 
+ion-header .button-md {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
 page-chat .note {
   -webkit-align-self: flex-start;
   -ms-flex-item-align: start;
@@ -27504,19 +27509,100 @@ page-chat .icon-circle, page-chat .icon-circle-large, page-chat .icon-circle-sma
   position: relative;
   display: inline-block;
   margin: -1px;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   border: 1px solid #ebebeb;
-  background: #00a1e1;
+  background: #1e88e5;
   /*#ececec;ebebeb*/
   color: #fff;
   text-align: center;
-  line-height: 40px;
+  line-height: 42px;
+  font-size: 22px;
+}
+
+page-chat ion-label {
+  margin: 8px 8px 8px 0 !important;
+}
+
+page-chat ion-avatar {
+  margin: 5px 16px 5px 0 !important;
 }
 
 page-chat .icon-circle {
   text-transform: uppercase;
+}
+
+page-chat .item-md ion-avatar {
+  position: relative;
+}
+
+page-chat .item-ios [item-right], page-chat .item-ios [item-end] {
+  margin: 0;
+}
+
+page-chat .item-ios.item-block .item-inner {
+  padding-right: 0;
+  border: none;
+}
+
+page-chat .item {
+  border-bottom: 0.55px solid #c8c7cc;
+  position: relative !important;
+}
+
+page-chat .item-md.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-chat .item-ios [item-right],
+page-chat .item-ios [item-end],
+page-chat .note-md {
+  margin: 0 !important;
+  font-size: 12px;
+  position: relative;
+  top: 8px;
+  right: 10px;
+}
+
+page-chat .item-inner p {
+  font-size: 12px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 20px);
+}
+
+page-chat .unreadCount {
+  position: absolute !important;
+  color: #fff;
+  background-color: #f53d3d;
+  padding: 1px 6px;
+  border-radius: 50%;
+  font-size: 11px;
+  top: 26px !important;
+  border-radius: 10px;
+}
+
+page-chat .fwB {
+  font-weight: bold;
+}
+
+page-chat .txtBlack {
+  color: #000;
+}
+
+page-chat .timeStamp {
+  position: absolute;
+  right: 10px !important;
+}
+
+page-chat .top30 {
+  top: 30px !important;
+}
+
+page-chat ion-avatar img, page-chat ion-thumbnail img {
+  width: 45px !important;
+  height: 45px !important;
 }
 
 page-individual-chat {
@@ -27606,6 +27692,7 @@ page-individual-chat .item-inner {
 
 page-individual-chat .directChatMsg {
   margin-bottom: 10px;
+  position: relative;
 }
 
 page-individual-chat .directChatMsg, page-individual-chat .directChatText {
@@ -27615,14 +27702,14 @@ page-individual-chat .directChatMsg, page-individual-chat .directChatText {
 }
 
 page-individual-chat .directChatArea {
-  padding: 15px 15px 0;
+  padding: 15px 10px 0;
 }
 
 page-individual-chat .directChatInfo {
   display: block;
-  margin-bottom: 5px;
   font-size: 12px;
   overflow: hidden;
+  text-align: center;
 }
 
 page-individual-chat .directChatName {
@@ -27631,6 +27718,7 @@ page-individual-chat .directChatName {
 
 page-individual-chat .directChatTimestamp {
   color: #999;
+  font-size: 11px;
 }
 
 page-individual-chat .directChatImg {
@@ -27671,28 +27759,31 @@ page-individual-chat .directChatText:after, page-individual-chat .directChatText
 }
 
 page-individual-chat .iconCircle {
-  position: relative;
+  position: absolute;
   margin: -1px;
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid #ebebeb;
-  background: #00a1e1;
+  background: #1e88e5;
   color: #fff;
   text-align: center;
   line-height: 40px;
   float: left;
   font-size: 16px;
+  bottom: 0;
 }
 
 page-individual-chat .talk-bubble {
-  margin-left: 15px;
-  display: inline-block;
+  margin: 5px 0 0 50px;
   position: relative;
-  padding: 3px 8px;
+  padding: 1px 8px;
   height: auto;
   background-color: #1e88e5;
-  border-radius: 3px;
+  border-radius: 20px;
+  max-width: calc(100% - 48px);
+  float: left;
+  bottom: 3px;
 }
 
 page-individual-chat .border {
@@ -27703,32 +27794,6 @@ page-individual-chat .round {
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-}
-
-page-individual-chat .tri-right.border.left-top:before {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -40px;
-  right: auto;
-  top: -8px;
-  bottom: auto;
-  border: 32px solid;
-  border-color: #666 transparent transparent transparent;
-}
-
-page-individual-chat .tri-right.left-top:after {
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: -10px;
-  right: auto;
-  top: 7px;
-  bottom: auto;
-  border: 12px solid;
-  border-color: #1e88e5 transparent transparent transparent;
 }
 
 page-individual-chat .tri-right.border.left-in:before {
@@ -27852,12 +27917,12 @@ page-individual-chat .scroll-content {
   margin-bottom: 50px !important;
 }
 
-.ios page-landing ion-content, .md page-landing ion-content {
-  background: #f5f6f7;
+page-individual-chat ion-infinite-scroll-content {
+  min-height: 20px;
 }
 
 .ios page-landing ion-content .appLogo, .md page-landing ion-content .appLogo {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 80px;
 }
 
@@ -27878,6 +27943,71 @@ page-individual-chat .scroll-content {
   background: #f5f6f7;
 }
 
+.ios page-landing ion-content .item-block, .ios page-landing ion-content .item-inner, .md page-landing ion-content .item-block, .md page-landing ion-content .item-inner {
+  background: transparent !important;
+}
+
+.ios page-landing ion-content .title, .md page-landing ion-content .title {
+  font-size: 24px;
+  margin: 0;
+  font-weight: 500;
+}
+
+page-notifications .icon-circle, page-notifications .icon-circle-large, page-notifications .icon-circle-small {
+  position: relative;
+  display: inline-block;
+  margin: -1px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #ebebeb;
+  background: #1e88e5;
+  /*#ececec;ebebeb*/
+  color: #fff;
+  text-align: center;
+  line-height: 40px;
+}
+
+page-notifications .icon-circle {
+  text-transform: uppercase;
+}
+
+page-notifications .item-md ion-avatar {
+  position: relative;
+}
+
+page-notifications .item-ios [item-right], page-notifications .item-ios [item-end] {
+  margin: 0;
+}
+
+page-notifications .item-ios.item-block .item-inner {
+  padding-right: 0;
+  border: none;
+}
+
+page-notifications .item {
+  position: relative !important;
+  border-bottom: 0.55px solid #c8c7cc;
+}
+
+page-notifications .item-md.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-notifications .item-ios [item-right],
+page-notifications .item-ios [item-end],
+page-notifications .note-md {
+  margin: 0 !important;
+  font-size: 12px;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+}
+
+page-notifications .item-inner p {
+  font-size: 12px !important;
+}
+
 .errorColor {
   color: red;
 }
@@ -27888,4 +28018,178 @@ page-individual-chat .scroll-content {
 
 .mt5 {
   margin-top: 5px;
+}
+
+page-settings .note {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  font-size: 12px;
+}
+
+page-settings .icon-circle, page-settings .icon-circle-large, page-settings .icon-circle-small {
+  position: relative;
+  display: inline-block;
+  margin: -1px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ebebeb;
+  background: #1e88e5;
+  /*#ececec;ebebeb*/
+  color: #fff;
+  text-align: center;
+  line-height: 42px;
+  font-size: 22px;
+}
+
+page-settings ion-label {
+  margin: 8px 8px 8px 0 !important;
+}
+
+page-settings ion-avatar {
+  margin: 5px 16px 5px 0 !important;
+}
+
+page-settings .icon-circle {
+  text-transform: uppercase;
+}
+
+page-settings .item-md ion-avatar {
+  position: relative;
+}
+
+page-settings .item-ios [item-right], page-settings .item-ios [item-end] {
+  margin: 0;
+}
+
+page-settings .item-ios.item-block .item-inner {
+  padding-right: 0;
+  border: none;
+}
+
+page-settings .item {
+  border-bottom: 0.55px solid #c8c7cc;
+  position: relative !important;
+}
+
+page-settings .item-md.item-block .item-inner {
+  border-bottom: none;
+}
+
+page-settings .item-ios [item-right],
+page-settings .item-ios [item-end],
+page-settings .note-md {
+  margin: 0 !important;
+  font-size: 12px;
+  position: relative;
+  top: 8px;
+  right: 10px;
+}
+
+page-settings .item-inner p {
+  font-size: 12px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 20px);
+}
+
+page-settings .unreadCount {
+  position: absolute !important;
+  color: #fff;
+  background-color: #f53d3d;
+  padding: 1px 6px;
+  border-radius: 50%;
+  font-size: 11px;
+  top: 26px !important;
+  border-radius: 10px;
+}
+
+page-settings .fwB {
+  font-weight: bold;
+}
+
+page-settings .txtBlack {
+  color: #000;
+}
+
+page-settings .timeStamp {
+  position: absolute;
+  right: 10px !important;
+}
+
+page-settings .top30 {
+  top: 30px !important;
+}
+
+page-settings ion-avatar img, page-settings ion-thumbnail img {
+  width: 45px !important;
+  height: 45px !important;
+}
+
+page-userslist .note {
+  -webkit-align-self: flex-start;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+  font-size: 12px;
+}
+
+page-userslist .icon-circle, page-userslist .icon-circle-large, page-userslist .icon-circle-small {
+  position: relative;
+  display: inline-block;
+  margin: -1px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #ebebeb;
+  background: #1e88e5;
+  /*#ececec;ebebeb*/
+  color: #fff;
+  text-align: center;
+  line-height: 42px;
+  font-size: 22px;
+}
+
+page-userslist ion-avatar img {
+  width: 45px !important;
+  height: 45px !important;
+}
+
+page-userslist .input-wrapper ion-label {
+  margin: 8px 8px 8px 0 !important;
+}
+
+page-userslist .icon-circle {
+  text-transform: uppercase;
+}
+
+page-userslist .item-md ion-avatar {
+  position: relative;
+}
+
+page-userslist .item-md ion-avatar .unreadCount {
+  position: absolute;
+  right: -3px;
+  top: 0;
+  background: #da2929;
+  border-radius: 3px;
+  color: #fff;
+  font-size: 11px;
+  padding: 2px;
+  z-index: 1;
+}
+
+page-userslist .spinner-container {
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
+
+page-userslist .item-md.item-block .item-inner,
+page-userslist .list-ios .item-block .item-inner {
+  border-bottom: none;
+}
+
+page-userslist .item {
+  border-bottom: 0.55px solid #c8c7cc;
 }
